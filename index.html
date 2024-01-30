@@ -25,7 +25,7 @@
       padding: 20px;
       background-color: #fff;
       border-radius: 8px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
       margin-top: 50px;
     }
 
@@ -196,6 +196,17 @@
       font-weight: bold;
     }
 
+    /* Register/Login Section */
+    .register-login {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .register-login a {
+      text-decoration: none;
+      color: #333;
+    }
+
     /* Footer */
     footer {
       text-align: center;
@@ -275,24 +286,34 @@
 
     <!-- Register/Login Section -->
     <div class="register-login">
-      <!-- This will be dynamically updated by the script -->
-      <a href="registration.html">Register/Login</a>
+      <!-- Add this script at the end of the body section -->
+      <script>
+        // Check if the user is logged in based on local storage
+        const storedUsername = localStorage.getItem('username');
+
+        if (storedUsername) {
+          // User is logged in
+          document.querySelector('.register-login').innerHTML = `
+            <span>${storedUsername}</span> |
+            <a href="#" onclick="deleteAccount()">Delete account</a> |
+            <a href="registration.html">Sign out</a>`;
+        } else {
+          // User is not logged in
+          document.querySelector('.register-login').innerHTML = '<a href="registration.html">Register/Login</a>';
+        }
+
+        function deleteAccount() {
+          // Simulate deleting account
+          alert('Account deleted successfully!');
+          localStorage.removeItem('username');
+          window.location.href = 'registration.html';
+        }
+      </script>
     </div>
 
     <footer>
       &copy; 2024 Crew Cafe. All rights reserved. | <a href="privacypolicy.html">Privacy Policy</a> | <a href="terms-of-service.html">Terms of Service</a>
     </footer>
   </div>
-
-  <!-- Add this script at the end of the body section -->
-  <script>
-    // Check if the user is logged in based on local storage
-    const storedUsername = localStorage.getItem('username');
-
-    if (storedUsername) {
-      // User is logged in
-      document.querySelector('.register-login').innerHTML = `Welcome, ${storedUsername}!`;
-    }
-  </script>
 </body>
 </html>
