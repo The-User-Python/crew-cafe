@@ -36,11 +36,7 @@
       color: #333;
     }
 
-    p {
-      margin-bottom: 20px;
-    }
-
-    /* Contact Form Styling */
+    /* Updated Contact Form Styling */
     .contact-form {
       margin-top: 20px;
     }
@@ -89,6 +85,13 @@
       color: #fff;
       text-decoration: none;
     }
+
+    /* Add a new style for a success message */
+    .success-message {
+      color: green;
+      text-align: center;
+      margin-top: 10px;
+    }
   </style>
 </head>
 <body>
@@ -96,7 +99,7 @@
     <h1>Contact Us</h1>
 
     <div class="contact-form">
-      <form>
+      <form id="contactForm">
         <label for="name">Name</label>
         <input type="text" id="name" name="name" placeholder="Your Name" required>
 
@@ -106,9 +109,39 @@
         <label for="message">Message</label>
         <textarea id="message" name="message" placeholder="Your Message" rows="6" required></textarea>
 
-        <button type="submit">Send Message</button>
+        <button type="button" onclick="submitForm()">Send Message</button>
       </form>
+
+      <div id="successMessage" class="success-message" style="display: none;">Message sent successfully!</div>
     </div>
   </div>
+
+  <script>
+    function submitForm() {
+      // Get form data
+      var name = document.getElementById("name").value;
+      var email = document.getElementById("email").value;
+      var message = document.getElementById("message").value;
+
+      // Validate form data (you can add more validation if needed)
+
+      // Save form data to local storage
+      var formData = {
+        name: name,
+        email: email,
+        message: message
+      };
+
+      var storedData = JSON.parse(localStorage.getItem("formData")) || [];
+      storedData.push(formData);
+      localStorage.setItem("formData", JSON.stringify(storedData));
+
+      // Display success message
+      document.getElementById("successMessage").style.display = "block";
+
+      // Optional: Clear form fields after submission
+      document.getElementById("contactForm").reset();
+    }
+  </script>
 </body>
 </html>
