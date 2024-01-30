@@ -25,7 +25,7 @@
       padding: 20px;
       background-color: #fff;
       border-radius: 8px;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
       margin-top: 50px;
     }
 
@@ -196,15 +196,16 @@
       font-weight: bold;
     }
 
-    /* Register/Login Section */
-    .register-login {
+    /* User Options */
+    .user-options {
       text-align: center;
-      margin-top: 20px;
     }
 
-    .register-login a {
-      text-decoration: none;
+    .user-options a {
+      display: block;
+      margin-top: 10px;
       color: #333;
+      text-decoration: none;
     }
 
     /* Footer */
@@ -284,36 +285,44 @@
       <p class="email">Email: <a href="mailto:handedaksh@gmail.com">handedaksh@gmail.com</a></p>
     </div>
 
-    <!-- Register/Login Section -->
-    <div class="register-login">
-      <!-- Add this script at the end of the body section -->
-      <script>
-        // Check if the user is logged in based on local storage
-        const storedUsername = localStorage.getItem('username');
-
-        if (storedUsername) {
-          // User is logged in
-          document.querySelector('.register-login').innerHTML = `
-            <span>${storedUsername}</span> |
-            <a href="#" onclick="deleteAccount()">Delete account</a> |
-            <a href="registration.html">Sign out</a>`;
-        } else {
-          // User is not logged in
-          document.querySelector('.register-login').innerHTML = '<a href="registration.html">Register/Login</a>';
-        }
-
-        function deleteAccount() {
-          // Simulate deleting account
-          alert('Account deleted successfully!');
-          localStorage.removeItem('username');
-          window.location.href = 'registration.html';
-        }
-      </script>
-    </div>
+    <!-- User Options -->
+    <div class="user-options" id="userOptions"></div>
 
     <footer>
       &copy; 2024 Crew Cafe. All rights reserved. | <a href="privacypolicy.html">Privacy Policy</a> | <a href="terms-of-service.html">Terms of Service</a>
     </footer>
   </div>
+
+  <!-- User Options Script -->
+  <script>
+    // Check if the user is logged in based on local storage
+    const storedUsername = localStorage.getItem('username');
+    const userOptionsDiv = document.getElementById('userOptions');
+
+    if (storedUsername) {
+      // User is logged in
+      document.querySelector('.register-login').innerHTML = `<span>${storedUsername}</span>`;
+
+      // Create user options
+      userOptionsDiv.innerHTML = `
+        <a href="#" onclick="deleteAccount()">Delete Account</a>
+        <a href="registration.html" onclick="signOut()">Sign Out</a>
+      `;
+    } else {
+      // User is not logged in
+      document.querySelector('.register-login').innerHTML = '<a href="registration.html">Register/Login</a>';
+    }
+
+    // Function to simulate account deletion
+    function deleteAccount() {
+      localStorage.removeItem('username');
+      window.location.href = 'registration.html';
+    }
+
+    // Function to simulate signing out
+    function signOut() {
+      window.location.href = 'home.html';
+    }
+  </script>
 </body>
 </html>
