@@ -68,6 +68,9 @@
       <label for="username">Username:</label>
       <input type="text" id="username" name="username" required>
 
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required>
+
       <label for="password">Password:</label>
       <input type="password" id="password" name="password" required>
 
@@ -80,11 +83,10 @@
       event.preventDefault();
       // Simulate successful registration
       const username = document.getElementById('username').value;
-
-      // Save username to local storage
+      const email = document.getElementById('email').value;
+      alert(`Registration successful! Welcome, ${username} (${email})!`);
+      // Store username in local storage
       localStorage.setItem('username', username);
-
-      alert(`Registration successful! Welcome, ${username}!`);
       window.location.href = 'home.html';
     }
   </script>
