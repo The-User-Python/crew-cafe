@@ -107,6 +107,28 @@
       color: #fff;
       text-decoration: none;
     }
+
+    /* Add styles for the cookie banner */
+    .cookie-banner {
+      background-color: #333;
+      color: #fff;
+      padding: 15px;
+      text-align: center;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      display: none;
+    }
+
+    .cookie-banner button {
+      background-color: #fff;
+      color: #333;
+      border: none;
+      padding: 5px 10px;
+      border-radius: 3px;
+      cursor: pointer;
+    }
   </style>
 </head>
 <body>
@@ -116,32 +138,32 @@
     <div class="privacy-policy">
       <div class="section">
         <h2>Introduction</h2>
-        <p>Your privacy is important to us. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website. Please read this Privacy Policy carefully. If you do not agree with the terms of this Privacy Policy, please do not access the site.</p>
+        <p>Your privacy is paramount. This Privacy Policy explains how we handle your information when you visit our website. Please read it carefully. If you disagree with its terms, please refrain from accessing the site.</p>
       </div>
 
       <div class="section">
         <h2>Information We Collect</h2>
-        <p>We may collect personal information from you such as your name, email address, and phone number when you voluntarily submit it to us through our website.</p>
+        <p>We may collect personal information like your name, email address, and phone number when you voluntarily submit it through our website.</p>
       </div>
 
       <div class="section">
         <h2>How We Use Your Information</h2>
-        <p>We may use the information we collect from you to provide and improve our services, respond to your inquiries, and communicate with you about our offerings.</p>
+        <p>We use the collected information to provide and enhance our services, respond to your inquiries, and keep you informed about our offerings.</p>
       </div>
 
       <div class="section">
         <h2>Disclosure of Your Information</h2>
-        <p>We may disclose your personal information to third parties who perform services on our behalf and are obligated not to disclose or use it for any other purpose.</p>
+        <p>Your personal information may be disclosed to third parties providing services on our behalf, bound not to disclose or use it for other purposes.</p>
       </div>
 
       <div class="section">
         <h2>Security of Your Information</h2>
-        <p>We take reasonable measures to protect your personal information from unauthorized access, use, or disclosure. However, no method of transmission over the internet or electronic storage is 100% secure.</p>
+        <p>We employ reasonable measures to safeguard your personal information. However, no online transmission or storage is 100% secure.</p>
       </div>
 
       <div class="section">
         <h2>Changes to This Privacy Policy</h2>
-        <p>We may update our Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page. You are advised to review this Privacy Policy periodically for any changes.</p>
+        <p>We may update this Privacy Policy periodically. Any changes will be posted on this page, and it's recommended to review it from time to time.</p>
       </div>
 
       <div class="section">
@@ -149,10 +171,28 @@
         <p>If you have any questions or suggestions about our Privacy Policy, please <a href="contactus.html">contact us</a>.</p>
       </div>
     </div>
-
-    <footer>
-      &copy; 2023 Crew Cafe. All rights reserved. | <a href="privacypolicy.html">Privacy Policy</a> | <a href="termsofservice.html">Terms of Service</a>
-    </footer>
   </div>
+
+  <!-- Cookie Banner -->
+  <div id="cookieBanner" class="cookie-banner">
+    This website uses cookies to ensure you get the best experience. <button onclick="acceptCookies()">Got it!</button>
+  </div>
+
+  <footer>
+    &copy; 2024 Crew Cafe. All rights reserved. | <a href="privacypolicy.html">Privacy Policy</a> | <a href="termsofservice.html">Terms of Service</a>
+  </footer>
+
+  <script>
+    // Check if the user has accepted cookies
+    if (!localStorage.getItem("cookiesAccepted")) {
+      document.getElementById("cookieBanner").style.display = "block";
+    }
+
+    // Function to accept cookies and hide the banner
+    function acceptCookies() {
+      localStorage.setItem("cookiesAccepted", true);
+      document.getElementById("cookieBanner").style.display = "none";
+    }
+  </script>
 </body>
 </html>
