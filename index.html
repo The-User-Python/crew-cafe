@@ -189,13 +189,20 @@
     /* User Options */
     .user-options {
       text-align: center;
+      margin-top: 10px;
     }
 
     .user-options a {
       display: block;
-      margin-top: 10px;
       color: #333;
       text-decoration: none;
+      margin-top: 5px;
+    }
+
+    .user-options span {
+      color: #333;
+      margin-top: 5px;
+      display: inline-block;
     }
 
     /* Footer */
@@ -204,6 +211,7 @@
       padding: 20px;
       background-color: #333;
       color: #fff;
+      margin-top: 20px;
     }
 
     footer a {
@@ -214,10 +222,12 @@
 </head>
 <body>
   <nav>
-    <a href="index.html">Home</a>
-    <a href="menu.html">Menu</a>
-    <a href="contact.html">Contact</a>
-    <a href="registration.html">Login</a>
+    <a href="#">Home</a>
+    <a href="#">Menu</a>
+    <a href="#">Contact</a>
+    <div class="registeration.html" id="registerLogin">
+      <!-- This will be dynamically updated -->
+    </div>
   </nav>
 
   <div class="container">
@@ -295,30 +305,24 @@
     // Check if the user is logged in based on local storage
     const storedUsername = localStorage.getItem('username');
     const userOptionsDiv = document.getElementById('userOptions');
+    const registerLoginDiv = document.getElementById('registerLogin');
 
     if (storedUsername) {
       // User is logged in
-      document.querySelector('.register-login').innerHTML = `<span>${storedUsername}</span>`;
+      registerLoginDiv.innerHTML = `<span>${storedUsername}</span>`;
 
       // Create user options
       userOptionsDiv.innerHTML = `
-        <a href="#" onclick="deleteAccount()">Delete Account</a>
         <a href="registration.html" onclick="signOut()">Sign Out</a>
       `;
     } else {
       // User is not logged in
-      document.querySelector('.register-login').innerHTML = '<a href="registration.html">Register/Login</a>';
-    }
-
-    // Function to simulate account deletion
-    function deleteAccount() {
-      localStorage.removeItem('username');
-      window.location.href = 'registration.html';
+      registerLoginDiv.innerHTML = '<a href="registration.html">Register/Login</a>';
     }
 
     // Function to simulate signing out
     function signOut() {
-      window.location.href = 'home.html';
+      window.location.href = 'registration.html';
     }
   </script>
 </body>
