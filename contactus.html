@@ -5,29 +5,31 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Crew Cafe - Contact Us</title>
   <style>
-    /* Reset some default styles */
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
     }
 
-    /* Basic styling */
     body {
-      font-family: Arial, sans-serif;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       line-height: 1.6;
       background-color: #f2f2f2;
       color: #333;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
     }
 
     .container {
-      max-width: 800px;
-      margin: 0 auto;
+      max-width: 600px;
+      width: 100%;
       padding: 20px;
       background-color: #fff;
-      border-radius: 5px;
+      border-radius: 8px;
       box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-      margin-top: 50px;
     }
 
     h1 {
@@ -36,7 +38,6 @@
       color: #333;
     }
 
-    /* Updated Contact Form Styling */
     .contact-form {
       margin-top: 20px;
     }
@@ -45,48 +46,38 @@
       display: block;
       font-weight: bold;
       margin-bottom: 10px;
+      color: #555;
     }
 
     .contact-form input[type="text"],
     .contact-form input[type="email"],
     .contact-form textarea {
       width: 100%;
-      padding: 10px;
+      padding: 12px;
       margin-bottom: 20px;
       border: 1px solid #ccc;
       border-radius: 5px;
       resize: vertical;
+      font-size: 16px;
     }
 
     .contact-form button {
-      display: block;
       background-color: #333;
       color: #fff;
       text-decoration: none;
-      padding: 10px 20px;
+      padding: 12px 20px;
       border-radius: 5px;
       border: none;
       cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s ease;
+      display: inline-block;
     }
 
     .contact-form button:hover {
       background-color: #555;
     }
 
-    /* Footer */
-    footer {
-      text-align: center;
-      padding: 20px;
-      background-color: #333;
-      color: #fff;
-    }
-
-    footer a {
-      color: #fff;
-      text-decoration: none;
-    }
-
-    /* Add a new style for a success message */
     .success-message {
       color: green;
       text-align: center;
@@ -116,31 +107,30 @@
     </div>
   </div>
 
+  <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
   <script>
+    emailjs.init("2N5602WN3EtBFTUBVbLZo"); // Replace with your Email.js user ID
+
     function submitForm() {
-      // Get form data
       var name = document.getElementById("name").value;
       var email = document.getElementById("email").value;
       var message = document.getElementById("message").value;
 
-      // Validate form data (you can add more validation if needed)
-
-      // Save form data to local storage
-      var formData = {
-        name: name,
-        email: email,
+      var emailParams = {
+        to_email: "handedaksh@gmail.com, // Replace with your email address
+        from_name: name,
+        from_email: email,
         message: message
       };
 
-      var storedData = JSON.parse(localStorage.getItem("formData")) || [];
-      storedData.push(formData);
-      localStorage.setItem("formData", JSON.stringify(storedData));
-
-      // Display success message
-      document.getElementById("successMessage").style.display = "block";
-
-      // Optional: Clear form fields after submission
-      document.getElementById("contactForm").reset();
+      emailjs.send("service_2zo6fxg", "template_jmqorge", emailParams)
+        .then(function(response) {
+          console.log("Email sent:", response);
+          document.getElementById("successMessage").style.display = "block";
+          document.getElementById("contactForm").reset(); // Reset form fields after submission
+        }, function(error) {
+          console.error("Email send failed:", error);
+        });
     }
   </script>
 </body>
