@@ -218,6 +218,11 @@
       color: #fff;
       text-decoration: none;
     }
+
+    /* Add this style to revert the background on sign-out */
+    .logged-in {
+      background-color: #fff;
+    }
   </style>
 </head>
 <body>
@@ -225,7 +230,7 @@
     <a href="#">Home</a>
     <a href="#">Menu</a>
     <a href="#">Contact</a>
-    <div class="registeration.html" id="registerLogin">
+    <div class="register-login" id="registerLogin">
       <!-- This will be dynamically updated -->
     </div>
   </nav>
@@ -302,6 +307,18 @@
 
   <!-- User Options Script -->
   <script>
+    // Function to handle sign-out
+    function signOut() {
+      // Clear the stored username
+      localStorage.removeItem('username');
+      
+      // Change background to its original form
+      document.body.classList.remove('logged-in');
+      
+      // Redirect to registration page
+      window.location.href = 'registration.html';
+    }
+
     // Check if the user is logged in based on local storage
     const storedUsername = localStorage.getItem('username');
     const userOptionsDiv = document.getElementById('userOptions');
@@ -310,6 +327,9 @@
     if (storedUsername) {
       // User is logged in
       registerLoginDiv.innerHTML = `<span>${storedUsername}</span>`;
+      
+      // Change background for logged-in state
+      document.body.classList.add('logged-in');
 
       // Create user options
       userOptionsDiv.innerHTML = `
@@ -320,9 +340,18 @@
       registerLoginDiv.innerHTML = '<a href="registration.html">Register/Login</a>';
     }
 
-    // Function to simulate signing out
-    function signOut() {
-      window.location.href = 'registration.html';
+    // Example of gathering user information during registration
+    // This is a simplified example, you might want to implement a proper registration form
+    function registerUser() {
+      const username = prompt('Enter your username:');
+      if (username) {
+        // Save the username to local storage
+        localStorage.setItem('username', username);
+        // Update the UI
+        registerLoginDiv.innerHTML = `<span>${username}</span>`;
+        // Change background for logged-in state
+        document.body.classList.add('logged-in');
+      }
     }
   </script>
 </body>
