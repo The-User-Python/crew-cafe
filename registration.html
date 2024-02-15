@@ -5,21 +5,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Crew Cafe - Registration</title>
   <style>
-    /* Add your styles for the registration page */
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       line-height: 1.6;
       background-color: #f8f8f8;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
     }
 
     .container {
       max-width: 400px;
-      margin: 0 auto;
       padding: 20px;
       background-color: #fff;
       border-radius: 8px;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      margin-top: 50px;
       text-align: center;
     }
 
@@ -45,6 +47,22 @@
       margin-bottom: 15px;
       border: 1px solid #ccc;
       border-radius: 5px;
+    }
+
+    .checkbox-container {
+      display: flex;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+
+    input[type="checkbox"] {
+      margin-right: 5px;
+    }
+
+    .terms-link {
+      color: #333;
+      text-decoration: underline;
+      cursor: pointer;
     }
 
     button {
@@ -74,6 +92,11 @@
       <label for="password">Password:</label>
       <input type="password" id="password" name="password" required>
 
+      <div class="checkbox-container">
+        <input type="checkbox" id="termsCheckbox" required>
+        <label for="termsCheckbox">I accept the <span class="terms-link" onclick="openTerms()">Terms of Service</span> and <span class="terms-link" onclick="openPrivacy()">Privacy Policy</span></label>
+      </div>
+
       <button type="submit">Register</button>
     </form>
   </div>
@@ -81,13 +104,19 @@
   <script>
     function registerUser(event) {
       event.preventDefault();
-      // Simulate successful registration
       const username = document.getElementById('username').value;
       const email = document.getElementById('email').value;
       alert(`Registration successful! Welcome, ${username} (${email})!`);
-      // Store username in local storage
       localStorage.setItem('username', username);
       window.location.href = 'index.html';
+    }
+
+    function openTerms() {
+      window.open('terms-of-service.html', '_blank');
+    }
+
+    function openPrivacy() {
+      window.open('privacypolicy.html', '_blank');
     }
   </script>
 </body>
